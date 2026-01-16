@@ -1,7 +1,7 @@
 {
-	"name": "My Deno app",
+	"name": "Demo Hono API server on Deno",
 	"exports": "./main.ts",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"tasks": {
 		"dev": "deno run --allow-net --watch main.ts"
 	},
