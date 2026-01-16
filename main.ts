@@ -43,3 +43,12 @@ app.post("/trees", async (c) => {
     message: `We just added a ${species} tree!`,
   });
 });
+
+app.get("/trees/:id", (c) => {
+  const id = c.req.param("id");
+  const tree = getItem(`trees_${id}`);
+  if (!tree?.id) {
+    return c.json({ message: "Tree not found" }, 404);
+  }
+  return c.json(tree);
+});
