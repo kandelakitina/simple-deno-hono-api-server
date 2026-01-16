@@ -52,3 +52,13 @@ app.get("/trees/:id", (c) => {
   }
   return c.json(tree);
 });
+
+app.put("/trees/:id", async (c) => {
+  const id = c.req.param("id");
+  const { species, age, location } = await c.req.json();
+  const updatedTree: Tree = { id, species, age, location };
+  setItem(`trees_${id}`, updatedTree);
+  return c.json({
+    message: `Tree has relocated to ${location}!`,
+  });
+});
