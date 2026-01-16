@@ -24,6 +24,10 @@ const getItem = (key: string): Tree | null => {
   return item ? JSON.parse(item) : null;
 };
 
+const deleteItem = (key: string) => {
+  localStorage.removeItem(key);
+};
+
 const oak: Tree = {
   id: "3",
   species: "oak",
@@ -60,5 +64,13 @@ app.put("/trees/:id", async (c) => {
   setItem(`trees_${id}`, updatedTree);
   return c.json({
     message: `Tree has relocated to ${location}!`,
+  });
+});
+
+app.delete("/trees/:id", (c) => {
+  const id = c.req.param("id");
+  deleteItem(`trees_${id}`);
+  return c.json({
+    message: `Tree ${id} has been cut down!`,
   });
 });
